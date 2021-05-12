@@ -17,19 +17,20 @@ namespace fiskmove
         static string facing = "nowhere";
 
         public static void Init()
-        {   
+        {
             Raylib.ImageResizeNN(ref trollface, 200, 150);
             Raylib.ImageResizeNN(ref trollleft, 200, 170);
             trollRight = Raylib.LoadTextureFromImage(trollface);
             Left = Raylib.LoadTextureFromImage(trollleft);
         }
         public static void Movement()
-        {
+        {   //om man står stilla
             Raylib.DrawTexture(forward, trollX, trollY, Color.WHITE);
             if (facing == "nowhere")
             {
                 Raylib.DrawTexture(forward, trollX, trollY, Color.WHITE);
             }
+            //rör åt höger
             if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
             {
 
@@ -48,7 +49,7 @@ namespace fiskmove
                 }
 
             }
-
+            //rör åt vänster
             if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
 
             {
@@ -59,6 +60,21 @@ namespace fiskmove
 
                 trollX = trollX - 2;
 
+            }
+            // rör neråt
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN))
+
+            {
+                facing = "south";
+
+                trollY = trollY + 2;
+            }
+            //rör uppåt
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+            {
+                facing = "north";
+
+                trollY = trollY - 2;
             }
         }
 

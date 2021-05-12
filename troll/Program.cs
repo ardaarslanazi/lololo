@@ -1,35 +1,52 @@
 ﻿using System;
 using Raylib_cs;
-using ArdasHåla;
 using fiskmove;
+using fightboss;
+
 namespace troll
 {
-    class Program
+    static class Program
     {
+
 
         static void Main(string[] args)
         {
+
             string scene = "first";
             Raylib.InitWindow(1240, 720, "Scene");
-            Raylib.SetTargetFPS(60);
-            Map.Init();
+
             Movements.Init();
-            
+
+            Texture2D lol = Raylib.LoadTexture("firstScene.png");
+
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
-                Console.ReadLine();
+                //första scenen 
                 if (scene == "first")
                 {
+
                     Raylib.ClearBackground(Color.WHITE);
                     Map.DrawMap();
-                    
+                    Movements.Movement();
 
-    
+                    if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+                    {
+                        scene = "boss fight";
+                    }
                 }
-                Movements.Movement();
+                //Nästa scen med boss fight
+                if (scene == "boss fight")
+                {
+                    Raylib.ClearBackground(Color.WHITE);
+                    boss.FightMap();
+                    Movements.Movement();
+
+                }
                 Raylib.EndDrawing();
+
             }
+
 
 
         }
